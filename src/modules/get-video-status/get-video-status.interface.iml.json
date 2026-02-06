@@ -1,0 +1,22 @@
+[
+    {
+        "name": "done",
+        "type": "boolean",
+        "label": "Done"
+    },
+    {
+        "name": "name",
+        "type": "text",
+        "label": "Operation Name"
+    },
+    {
+        "name": "videoUri",
+        "type": "text",
+        "label": "Video URI"
+    },
+    {
+        "name": "state",
+        "type": "text",
+        "label": "State"
+    }
+]

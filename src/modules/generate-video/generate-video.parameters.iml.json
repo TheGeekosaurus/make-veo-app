@@ -1,0 +1,67 @@
+[
+    {
+        "name": "model",
+        "type": "select",
+        "label": "Model",
+        "help": "Select the Veo model to use for video generation.",
+        "required": true,
+        "options": [
+            {
+                "label": "Veo 3",
+                "value": "veo-3.0-generate-preview"
+            },
+            {
+                "label": "Veo 2",
+                "value": "veo-2.0-generate-001"
+            }
+        ]
+    },
+    {
+        "name": "prompt",
+        "type": "text",
+        "label": "Prompt",
+        "help": "Describe the video you want to generate.",
+        "required": true
+    },
+    {
+        "name": "negativePrompt",
+        "type": "text",
+        "label": "Negative Prompt",
+        "help": "Describe what you do NOT want in the video.",
+        "required": false
+    },
+    {
+        "name": "aspectRatio",
+        "type": "select",
+        "label": "Aspect Ratio",
+        "help": "The aspect ratio of the generated video.",
+        "required": false,
+        "options": [
+            {
+                "label": "16:9 (Landscape)",
+                "value": "16:9"
+            },
+            {
+                "label": "9:16 (Portrait)",
+                "value": "9:16"
+            }
+        ]
+    },
+    {
+        "name": "personGeneration",
+        "type": "select",
+        "label": "Person Generation",
+        "help": "Control whether people can appear in the generated video.",
+        "required": false,
+        "options": [
+            {
+                "label": "Allow Adult Only",
+                "value": "allow_adult"
+            },
+            {
+                "label": "Don't Allow",
+                "value": "dont_allow"
+            }
+        ]
+    }
+]

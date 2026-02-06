@@ -1,0 +1,14 @@
+# Make.com secrets
+.secrets/
+*.secret
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Node (if using any tooling)
+node_modules/

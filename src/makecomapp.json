@@ -1,0 +1,11 @@
+{
+    "origins": [
+        {
+            "label": "Production",
+            "baseUrl": "https://eu1.make.com/api",
+            "appId": "gemini-veo",
+            "appVersion": 1,
+            "apikeyFile": "../.secrets/apikey"
+        }
+    ]
+}

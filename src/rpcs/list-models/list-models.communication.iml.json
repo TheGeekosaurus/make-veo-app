@@ -1,0 +1,11 @@
+{
+    "url": "/models",
+    "method": "GET",
+    "response": {
+        "iterate": "{{body.models}}",
+        "output": {
+            "label": "{{item.displayName}}",
+            "value": "{{item.name}}"
+        }
+    }
+}

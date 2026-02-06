@@ -1,0 +1,20 @@
+{
+    "url": "/models",
+    "method": "GET",
+    "headers": {
+        "x-goog-api-key": "{{parameters.apiKey}}"
+    },
+    "response": {
+        "valid": {
+            "condition": "{{statusCode == 200}}"
+        },
+        "error": {
+            "message": "Invalid API key. Please verify your Gemini API key and try again."
+        }
+    },
+    "log": {
+        "sanitize": [
+            "request.headers.x-goog-api-key"
+        ]
+    }
+}

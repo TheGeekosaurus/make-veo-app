@@ -1,0 +1,10 @@
+{
+    "url": "/models/{{parameters.model}}:predictLongRunning",
+    "method": "POST",
+    "body": {},
+    "response": {
+        "output": {
+            "operationName": "{{body.name}}"
+        }
+    }
+}

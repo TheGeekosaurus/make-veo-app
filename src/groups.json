@@ -1,0 +1,10 @@
+[
+    {
+        "name": "video",
+        "label": "Video Generation"
+    },
+    {
+        "name": "other",
+        "label": "Other"
+    }
+]

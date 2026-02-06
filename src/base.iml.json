@@ -1,0 +1,29 @@
+{
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+    "headers": {
+        "Content-Type": "application/json",
+        "x-goog-api-key": "{{connection.apiKey}}"
+    },
+    "response": {
+        "error": {
+            "message": "[{{statusCode}}]: {{body.error.message}}",
+            "400": {
+                "message": "{{body.error.message}}"
+            },
+            "401": {
+                "message": "Invalid API key. Please check your Gemini API key."
+            },
+            "403": {
+                "message": "Access denied. {{body.error.message}}"
+            },
+            "429": {
+                "message": "Rate limit exceeded. Please try again later."
+            }
+        }
+    },
+    "log": {
+        "sanitize": [
+            "request.headers.x-goog-api-key"
+        ]
+    }
+}
