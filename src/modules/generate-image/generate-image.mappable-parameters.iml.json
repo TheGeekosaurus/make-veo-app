@@ -3,7 +3,7 @@
         "name": "model",
         "type": "select",
         "label": "Model",
-        "help": "Select the model for image generation.",
+        "help": "Gemini 3 Pro Image Preview supports up to 14 reference images.",
         "required": true,
         "options": [
             {
@@ -20,14 +20,50 @@
         "name": "prompt",
         "type": "text",
         "label": "Prompt",
-        "help": "Describe the image you want to generate.",
+        "help": "Describe the image you want to generate. If you provide reference images, describe how to use them.",
         "required": true
+    },
+    {
+        "name": "referenceImageUrl1",
+        "type": "url",
+        "label": "Reference Image 1 - URL",
+        "help": "Public URL of a reference image. MIME type is auto-detected. Up to 14 with Gemini 3 Pro (6 objects + 5 humans).",
+        "required": false
+    },
+    {
+        "name": "referenceImageUrl2",
+        "type": "url",
+        "label": "Reference Image 2 - URL",
+        "required": false
+    },
+    {
+        "name": "referenceImageUrl3",
+        "type": "url",
+        "label": "Reference Image 3 - URL",
+        "required": false
+    },
+    {
+        "name": "referenceImageUrl4",
+        "type": "url",
+        "label": "Reference Image 4 - URL",
+        "required": false
+    },
+    {
+        "name": "referenceImageUrl5",
+        "type": "url",
+        "label": "Reference Image 5 - URL",
+        "required": false
+    },
+    {
+        "name": "referenceImageUrl6",
+        "type": "url",
+        "label": "Reference Image 6 - URL",
+        "required": false
     },
     {
         "name": "aspectRatio",
         "type": "select",
         "label": "Aspect Ratio",
-        "help": "The aspect ratio of the generated image.",
         "required": false,
         "options": [
             {
@@ -60,7 +96,6 @@
         "name": "imageSize",
         "type": "select",
         "label": "Image Size",
-        "help": "The resolution of the generated image.",
         "required": false,
         "options": [
             {
@@ -77,7 +112,7 @@
         "name": "enableGoogleSearch",
         "type": "boolean",
         "label": "Enable Google Search Grounding",
-        "help": "Ground image generation with real-time information from Google Search (e.g. weather forecasts, recent events). Only works with Gemini 3 Pro Image Preview.",
+        "help": "Ground generation with real-time info from Google Search. Only works with Gemini 3 Pro Image Preview.",
         "required": false
     }
 ]
