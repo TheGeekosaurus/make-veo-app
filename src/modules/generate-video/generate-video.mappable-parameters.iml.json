@@ -3,7 +3,7 @@
         "name": "model",
         "type": "select",
         "label": "Model",
-        "help": "Select the Veo model to use for video generation.",
+        "help": "Select the Veo model. Veo 3.1 supports reference images, first/last frames, and video extension.",
         "required": true,
         "options": [
             {
@@ -24,7 +24,7 @@
         "name": "prompt",
         "type": "text",
         "label": "Prompt",
-        "help": "Describe the video you want to generate. Supports dialogue in quotes and sound effect descriptions. See the [Veo prompt guide](https://ai.google.dev/gemini-api/docs/veo/prompt-guide) for tips.",
+        "help": "Describe the video you want to generate. Supports dialogue in quotes and sound effect descriptions.",
         "required": true
     },
     {
@@ -38,7 +38,6 @@
         "name": "aspectRatio",
         "type": "select",
         "label": "Aspect Ratio",
-        "help": "The aspect ratio of the generated video.",
         "required": false,
         "options": [
             {
@@ -48,6 +47,27 @@
             {
                 "label": "9:16 (Portrait)",
                 "value": "9:16"
+            }
+        ]
+    },
+    {
+        "name": "resolution",
+        "type": "select",
+        "label": "Resolution",
+        "help": "Video resolution. Required when extending videos.",
+        "required": false,
+        "options": [
+            {
+                "label": "720p",
+                "value": "720p"
+            },
+            {
+                "label": "1080p",
+                "value": "1080p"
+            },
+            {
+                "label": "4K",
+                "value": "4k"
             }
         ]
     },
@@ -67,5 +87,149 @@
                 "value": "dont_allow"
             }
         ]
+    },
+    {
+        "name": "numberOfVideos",
+        "type": "number",
+        "label": "Number of Videos",
+        "help": "Number of videos to generate. Default: 1.",
+        "required": false
+    },
+    {
+        "name": "firstFrameMimeType",
+        "type": "select",
+        "label": "First Frame - MIME Type",
+        "help": "**Image-to-Video / Interpolation**: MIME type of the starting frame image. Leave empty for text-only generation.",
+        "required": false,
+        "options": [
+            {
+                "label": "PNG",
+                "value": "image/png"
+            },
+            {
+                "label": "JPEG",
+                "value": "image/jpeg"
+            },
+            {
+                "label": "WebP",
+                "value": "image/webp"
+            }
+        ]
+    },
+    {
+        "name": "firstFrameData",
+        "type": "text",
+        "label": "First Frame - Image Data (Base64)",
+        "help": "Base64-encoded image to use as the starting frame of the video.",
+        "required": false
+    },
+    {
+        "name": "lastFrameMimeType",
+        "type": "select",
+        "label": "Last Frame - MIME Type",
+        "help": "**Interpolation (Veo 3.1 only)**: MIME type of the ending frame image.",
+        "required": false,
+        "options": [
+            {
+                "label": "PNG",
+                "value": "image/png"
+            },
+            {
+                "label": "JPEG",
+                "value": "image/jpeg"
+            },
+            {
+                "label": "WebP",
+                "value": "image/webp"
+            }
+        ]
+    },
+    {
+        "name": "lastFrameData",
+        "type": "text",
+        "label": "Last Frame - Image Data (Base64)",
+        "help": "Base64-encoded image to use as the ending frame of the video.",
+        "required": false
+    },
+    {
+        "name": "referenceImages",
+        "type": "array",
+        "label": "Reference Images",
+        "help": "**Veo 3.1 only**: Up to 3 reference images to guide content (person, character, or product). Each image preserves the subject's appearance in the output.",
+        "required": false,
+        "spec": [
+            {
+                "name": "image",
+                "type": "collection",
+                "label": "Image",
+                "spec": [
+                    {
+                        "name": "inlineData",
+                        "type": "collection",
+                        "label": "Inline Data",
+                        "spec": [
+                            {
+                                "name": "mimeType",
+                                "type": "select",
+                                "label": "MIME Type",
+                                "required": true,
+                                "options": [
+                                    {
+                                        "label": "PNG",
+                                        "value": "image/png"
+                                    },
+                                    {
+                                        "label": "JPEG",
+                                        "value": "image/jpeg"
+                                    },
+                                    {
+                                        "label": "WebP",
+                                        "value": "image/webp"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "data",
+                                "type": "text",
+                                "label": "Image Data (Base64)",
+                                "required": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "referenceType",
+                "type": "select",
+                "label": "Reference Type",
+                "required": true,
+                "options": [
+                    {
+                        "label": "Asset",
+                        "value": "asset"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "extendVideoMimeType",
+        "type": "select",
+        "label": "Extend Video - MIME Type",
+        "help": "**Video Extension (Veo 3.1 only)**: MIME type of the Veo-generated video to extend. Videos must be 141s or shorter, 720p, and generated within the last 2 days.",
+        "required": false,
+        "options": [
+            {
+                "label": "MP4",
+                "value": "video/mp4"
+            }
+        ]
+    },
+    {
+        "name": "extendVideoData",
+        "type": "text",
+        "label": "Extend Video - Video Data (Base64)",
+        "help": "Base64-encoded video data from a previous Veo generation to extend by 7 seconds.",
+        "required": false
     }
 ]

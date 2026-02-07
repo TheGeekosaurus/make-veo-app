@@ -4,13 +4,19 @@
     "body": {
         "instances": [
             {
-                "prompt": "{{parameters.prompt}}"
+                "prompt": "{{parameters.prompt}}",
+                "image": "{{if(parameters.firstFrameMimeType, object('inlineData', object('mimeType', parameters.firstFrameMimeType, 'data', parameters.firstFrameData)), undefined)}}",
+                "video": "{{if(parameters.extendVideoMimeType, object('inlineData', object('mimeType', parameters.extendVideoMimeType, 'data', parameters.extendVideoData)), undefined)}}"
             }
         ],
         "parameters": {
             "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
             "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
-            "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}"
+            "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}",
+            "resolution": "{{ifempty(parameters.resolution, undefined)}}",
+            "numberOfVideos": "{{ifempty(parameters.numberOfVideos, undefined)}}",
+            "lastFrame": "{{if(parameters.lastFrameMimeType, object('inlineData', object('mimeType', parameters.lastFrameMimeType, 'data', parameters.lastFrameData)), undefined)}}",
+            "referenceImages": "{{ifempty(parameters.referenceImages, undefined)}}"
         }
     },
     "response": {
