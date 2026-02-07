@@ -24,7 +24,7 @@
         "name": "prompt",
         "type": "text",
         "label": "Prompt",
-        "help": "Describe the video you want to generate. Supports dialogue in quotes and sound effect descriptions. See the [Veo prompt guide](https://ai.google.dev/gemini-api/docs/veo/prompt-guide) for tips.",
+        "help": "Describe the video you want to generate. Supports dialogue in quotes and sound effect descriptions.",
         "required": true
     },
     {

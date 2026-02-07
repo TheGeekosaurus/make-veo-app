@@ -1,7 +1,18 @@
 {
     "url": "/models/{{parameters.model}}:predictLongRunning",
     "method": "POST",
-    "body": {},
+    "body": {
+        "instances": [
+            {
+                "prompt": "{{parameters.prompt}}"
+            }
+        ],
+        "parameters": {
+            "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+            "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
+            "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}"
+        }
+    },
     "response": {
         "output": {
             "operationName": "{{body.name}}"

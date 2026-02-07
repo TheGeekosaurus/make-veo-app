@@ -1,0 +1,272 @@
+[
+    {
+        "url": "/models/{{parameters.model}}:predictLongRunning",
+        "method": "POST",
+        "body": {
+            "instances": [
+                {
+                    "prompt": "{{parameters.prompt}}"
+                }
+            ],
+            "parameters": {
+                "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+                "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
+                "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}"
+            }
+        },
+        "response": {
+            "temp": {
+                "operationName": "{{body.name}}",
+                "done": false,
+                "pollCount": 0
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "temp": {
+                "done": "{{body.done}}",
+                "pollCount": "{{temp.pollCount + 1}}",
+                "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+                "operationName": "{{temp.operationName}}"
+            }
+        }
+    },
+    {
+        "url": "/{{temp.operationName}}",
+        "method": "GET",
+        "condition": "{{temp.done != true && temp.pollCount < 30}}",
+        "response": {
+            "output": {
+                "done": "{{ifempty(body.done, temp.done)}}",
+                "operationName": "{{temp.operationName}}",
+                "videoUri": "{{ifempty(body.response.generateVideoResponse.generatedSamples[0].video.uri, temp.videoUri)}}",
+                "pollAttempts": "{{temp.pollCount + 1}}"
+            }
+        }
+    }
+]
