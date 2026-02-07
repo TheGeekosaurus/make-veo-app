@@ -39,7 +39,7 @@
         "name": "negativePrompt",
         "type": "text",
         "label": "Negative Prompt",
-        "help": "Describe what you do NOT want in the video.",
+        "help": "Describe what you do NOT want in the video (e.g. `cartoon, drawing, low quality`).",
         "required": false
     },
     {
@@ -62,7 +62,7 @@
         "name": "resolution",
         "type": "select",
         "label": "Resolution",
-        "help": "Video resolution. Default: 720p. 1080p and 4K only support 8s duration. Extension requires 720p.",
+        "help": "Default: 720p. 1080p and 4K only support 8s duration. Extension requires 720p.",
         "required": false,
         "options": [
             {
@@ -83,7 +83,7 @@
         "name": "durationSeconds",
         "type": "select",
         "label": "Duration (seconds)",
-        "help": "Length of generated video. Must be 8 when using extension, reference images, or 1080p/4K resolution.",
+        "help": "Must be 8 when using extension, reference images, or 1080p/4K.",
         "required": false,
         "options": [
             {
@@ -104,7 +104,7 @@
         "name": "personGeneration",
         "type": "select",
         "label": "Person Generation",
-        "help": "Control whether people can appear. Veo 3.1 text-to-video/extension: allow_all only. Image-to-video/interpolation/references: allow_adult only.",
+        "help": "Veo 3.1 text-to-video/extension: allow_all only. Image-to-video/interpolation/references: allow_adult only.",
         "required": false,
         "options": [
             {
@@ -132,144 +132,49 @@
         "name": "seed",
         "type": "number",
         "label": "Seed",
-        "help": "Seed for generation. Available for Veo 3+ models. Doesn't guarantee determinism but slightly improves it.",
+        "help": "Veo 3+ only. Slightly improves reproducibility.",
         "required": false
     },
     {
-        "name": "firstFrameMimeType",
-        "type": "select",
-        "label": "First Frame - MIME Type",
-        "help": "**Image-to-Video / Interpolation**: MIME type of the starting frame image. Leave empty for text-only generation.",
-        "required": false,
-        "options": [
-            {
-                "label": "PNG",
-                "value": "image/png"
-            },
-            {
-                "label": "JPEG",
-                "value": "image/jpeg"
-            },
-            {
-                "label": "WebP",
-                "value": "image/webp"
-            }
-        ]
-    },
-    {
-        "name": "firstFrameData",
-        "type": "text",
-        "label": "First Frame - Image Data (Base64)",
-        "help": "Base64-encoded image to use as the starting frame of the video.",
+        "name": "firstFrameUrl",
+        "type": "url",
+        "label": "First Frame - Image URL",
+        "help": "Public URL of an image to use as the starting frame. MIME type is auto-detected. Leave empty for text-only generation.",
         "required": false
     },
     {
-        "name": "lastFrameMimeType",
-        "type": "select",
-        "label": "Last Frame - MIME Type",
-        "help": "**Interpolation (Veo 3.1 only)**: MIME type of the ending frame image.",
-        "required": false,
-        "options": [
-            {
-                "label": "PNG",
-                "value": "image/png"
-            },
-            {
-                "label": "JPEG",
-                "value": "image/jpeg"
-            },
-            {
-                "label": "WebP",
-                "value": "image/webp"
-            }
-        ]
-    },
-    {
-        "name": "lastFrameData",
-        "type": "text",
-        "label": "Last Frame - Image Data (Base64)",
-        "help": "Base64-encoded image to use as the ending frame of the video.",
+        "name": "lastFrameUrl",
+        "type": "url",
+        "label": "Last Frame - Image URL",
+        "help": "Public URL of an image to use as the ending frame (interpolation). Requires First Frame to also be set.",
         "required": false
     },
     {
-        "name": "referenceImages",
-        "type": "array",
-        "label": "Reference Images",
-        "help": "**Veo 3.1 only**: Up to 3 reference images to guide content (person, character, or product). Each image preserves the subject's appearance in the output.",
-        "required": false,
-        "spec": [
-            {
-                "name": "image",
-                "type": "collection",
-                "label": "Image",
-                "spec": [
-                    {
-                        "name": "inlineData",
-                        "type": "collection",
-                        "label": "Inline Data",
-                        "spec": [
-                            {
-                                "name": "mimeType",
-                                "type": "select",
-                                "label": "MIME Type",
-                                "required": true,
-                                "options": [
-                                    {
-                                        "label": "PNG",
-                                        "value": "image/png"
-                                    },
-                                    {
-                                        "label": "JPEG",
-                                        "value": "image/jpeg"
-                                    },
-                                    {
-                                        "label": "WebP",
-                                        "value": "image/webp"
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "data",
-                                "type": "text",
-                                "label": "Image Data (Base64)",
-                                "required": true
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "referenceType",
-                "type": "select",
-                "label": "Reference Type",
-                "required": true,
-                "options": [
-                    {
-                        "label": "Asset",
-                        "value": "asset"
-                    }
-                ]
-            }
-        ]
+        "name": "referenceImageUrl1",
+        "type": "url",
+        "label": "Reference Image 1 - URL",
+        "help": "**Veo 3.1 only**: Public URL of a reference image to guide subject appearance.",
+        "required": false
     },
     {
-        "name": "extendVideoMimeType",
-        "type": "select",
-        "label": "Extend Video - MIME Type",
-        "help": "**Video Extension (Veo 3.1 only)**: MIME type of the Veo-generated video to extend. Videos must be 141s or shorter, 720p, and generated within the last 2 days.",
-        "required": false,
-        "options": [
-            {
-                "label": "MP4",
-                "value": "video/mp4"
-            }
-        ]
+        "name": "referenceImageUrl2",
+        "type": "url",
+        "label": "Reference Image 2 - URL",
+        "help": "Second reference image URL (optional).",
+        "required": false
     },
     {
-        "name": "extendVideoData",
-        "type": "text",
-        "label": "Extend Video - Video Data (Base64)",
-        "help": "Base64-encoded video data from a previous Veo generation to extend by 7 seconds.",
+        "name": "referenceImageUrl3",
+        "type": "url",
+        "label": "Reference Image 3 - URL",
+        "help": "Third reference image URL (optional).",
+        "required": false
+    },
+    {
+        "name": "extendVideoUrl",
+        "type": "url",
+        "label": "Extend Video - URL",
+        "help": "**Veo 3.1 only**: Public URL of a previously generated Veo video to extend by 7 seconds. Must be 141s or shorter, 720p.",
         "required": false
     }
 ]

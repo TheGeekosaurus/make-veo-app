@@ -3,7 +3,7 @@
         "name": "model",
         "type": "select",
         "label": "Model",
-        "help": "Select the model for image editing. Gemini 3 Pro Image Preview supports up to 14 reference images.",
+        "help": "Gemini 3 Pro Image Preview supports up to 14 reference images.",
         "required": true,
         "options": [
             {
@@ -24,40 +24,16 @@
         "required": true
     },
     {
-        "name": "referenceImages",
+        "name": "imageUrls",
         "type": "array",
-        "label": "Reference Images",
-        "help": "Up to 14 reference images: 6 objects (high-fidelity) + 5 humans (character consistency). At least 1 required.",
+        "label": "Reference Image URLs",
+        "help": "Public URLs of reference images (up to 14). MIME types are auto-detected. Use for objects (up to 6) and humans (up to 5) for character consistency.",
         "required": true,
         "spec": [
             {
-                "name": "mimeType",
-                "type": "select",
-                "label": "MIME Type",
-                "required": true,
-                "options": [
-                    {
-                        "label": "JPEG",
-                        "value": "image/jpeg"
-                    },
-                    {
-                        "label": "PNG",
-                        "value": "image/png"
-                    },
-                    {
-                        "label": "WebP",
-                        "value": "image/webp"
-                    },
-                    {
-                        "label": "GIF",
-                        "value": "image/gif"
-                    }
-                ]
-            },
-            {
-                "name": "data",
-                "type": "text",
-                "label": "Image Data (Base64)",
+                "name": "url",
+                "type": "url",
+                "label": "Image URL",
                 "required": true
             }
         ]
@@ -66,7 +42,6 @@
         "name": "aspectRatio",
         "type": "select",
         "label": "Aspect Ratio",
-        "help": "The aspect ratio of the generated image.",
         "required": false,
         "options": [
             {
@@ -99,7 +74,6 @@
         "name": "imageSize",
         "type": "select",
         "label": "Image Size",
-        "help": "The resolution of the generated image.",
         "required": false,
         "options": [
             {
