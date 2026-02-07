@@ -1,0 +1,58 @@
+[
+    {
+        "name": "model",
+        "type": "select",
+        "label": "Model",
+        "help": "Select the model for image editing.",
+        "required": true,
+        "options": [
+            {
+                "label": "Gemini 2.5 Flash (Image)",
+                "value": "gemini-2.5-flash-image"
+            },
+            {
+                "label": "Gemini 3 Pro Image Preview",
+                "value": "gemini-3-pro-image-preview"
+            }
+        ]
+    },
+    {
+        "name": "prompt",
+        "type": "text",
+        "label": "Edit Prompt",
+        "help": "Describe the edits you want to make to the image.",
+        "required": true
+    },
+    {
+        "name": "imageMimeType",
+        "type": "select",
+        "label": "Image MIME Type",
+        "help": "The MIME type of the input image.",
+        "required": true,
+        "options": [
+            {
+                "label": "JPEG",
+                "value": "image/jpeg"
+            },
+            {
+                "label": "PNG",
+                "value": "image/png"
+            },
+            {
+                "label": "WebP",
+                "value": "image/webp"
+            },
+            {
+                "label": "GIF",
+                "value": "image/gif"
+            }
+        ]
+    },
+    {
+        "name": "imageData",
+        "type": "text",
+        "label": "Image Data (Base64)",
+        "help": "The base64-encoded image data to edit.",
+        "required": true
+    }
+]

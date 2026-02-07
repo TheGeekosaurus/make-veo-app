@@ -1,0 +1,7 @@
+{
+    "text": "AI works by learning patterns from large amounts of data, then using those patterns to make predictions or generate new content.",
+    "finishReason": "STOP",
+    "promptTokenCount": 10,
+    "candidatesTokenCount": 25,
+    "totalTokenCount": 35
+}

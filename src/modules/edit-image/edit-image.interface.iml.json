@@ -1,0 +1,32 @@
+[
+    {
+        "name": "text",
+        "type": "text",
+        "label": "Response Text"
+    },
+    {
+        "name": "imageMimeType",
+        "type": "text",
+        "label": "Image MIME Type"
+    },
+    {
+        "name": "imageData",
+        "type": "text",
+        "label": "Image Data (Base64)"
+    },
+    {
+        "name": "finishReason",
+        "type": "text",
+        "label": "Finish Reason"
+    },
+    {
+        "name": "promptTokenCount",
+        "type": "number",
+        "label": "Prompt Token Count"
+    },
+    {
+        "name": "totalTokenCount",
+        "type": "number",
+        "label": "Total Token Count"
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "name": "text",
+        "type": "text",
+        "label": "Generated Text"
+    },
+    {
+        "name": "finishReason",
+        "type": "text",
+        "label": "Finish Reason"
+    },
+    {
+        "name": "promptTokenCount",
+        "type": "number",
+        "label": "Prompt Token Count"
+    },
+    {
+        "name": "candidatesTokenCount",
+        "type": "number",
+        "label": "Candidates Token Count"
+    },
+    {
+        "name": "totalTokenCount",
+        "type": "number",
+        "label": "Total Token Count"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "model",
+        "type": "select",
+        "label": "Model",
+        "help": "Select the model for image generation.",
+        "required": true,
+        "options": [
+            {
+                "label": "Gemini 2.5 Flash (Image)",
+                "value": "gemini-2.5-flash-image"
+            },
+            {
+                "label": "Gemini 3 Pro Image Preview",
+                "value": "gemini-3-pro-image-preview"
+            }
+        ]
+    },
+    {
+        "name": "prompt",
+        "type": "text",
+        "label": "Prompt",
+        "help": "Describe the image you want to generate.",
+        "required": true
+    }
+]

@@ -1,5 +1,13 @@
 [
     {
+        "name": "text",
+        "label": "Text Generation"
+    },
+    {
+        "name": "image",
+        "label": "Image Generation"
+    },
+    {
         "name": "video",
         "label": "Video Generation"
     },

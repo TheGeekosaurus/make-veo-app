@@ -1,0 +1,37 @@
+{
+    "url": "/models/{{parameters.model}}:generateContent",
+    "method": "POST",
+    "body": {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": "{{parameters.prompt}}"
+                    },
+                    {
+                        "inline_data": {
+                            "mime_type": "{{parameters.imageMimeType}}",
+                            "data": "{{parameters.imageData}}"
+                        }
+                    }
+                ]
+            }
+        ],
+        "generationConfig": {
+            "responseModalities": [
+                "TEXT",
+                "IMAGE"
+            ]
+        }
+    },
+    "response": {
+        "output": {
+            "text": "{{ifempty(body.candidates[0].content.parts[0].text, '')}}",
+            "imageMimeType": "{{ifempty(body.candidates[0].content.parts[1].inlineData.mimeType, body.candidates[0].content.parts[0].inlineData.mimeType)}}",
+            "imageData": "{{ifempty(body.candidates[0].content.parts[1].inlineData.data, body.candidates[0].content.parts[0].inlineData.data)}}",
+            "finishReason": "{{body.candidates[0].finishReason}}",
+            "promptTokenCount": "{{body.usageMetadata.promptTokenCount}}",
+            "totalTokenCount": "{{body.usageMetadata.totalTokenCount}}"
+        }
+    }
+}
