@@ -1,0 +1,18 @@
+{
+    "url": "{{parameters.fileUri}}",
+    "method": "GET",
+    "headers": {
+        "x-goog-api-key": "{{connection.apiKey}}"
+    },
+    "followRedirects": true,
+    "followAllRedirects": true,
+    "response": {
+        "type": "binary",
+        "output": {
+            "fileName": "{{parameters.fileName}}",
+            "data": "{{body}}",
+            "contentType": "{{headers.content-type}}",
+            "contentLength": "{{headers.content-length}}"
+        }
+    }
+}

@@ -1,6 +1,0 @@
-{
-    "done": true,
-    "operationName": "operations/generate-video-sample-operation-id",
-    "videoUri": "https://generativelanguage.googleapis.com/v1beta/files/sample-video-file",
-    "pollAttempts": 12
-}

@@ -54,6 +54,13 @@ src/
 │   │   ├── get-video-status.interface.iml.json              # Output: done, videoUri, state
 │   │   └── get-video-status.samples.iml.json                # Sample output
 │   │
+│   ├── download-asset/                                      # [Other] group
+│   │   ├── download-asset.communication.iml.json            # GET file URI with auth + redirects
+│   │   ├── download-asset.mappable-parameters.iml.json      # File URI, file name
+│   │   ├── download-asset.static-parameters.iml.json        # (empty)
+│   │   ├── download-asset.interface.iml.json                # Output: binary data, contentType
+│   │   └── download-asset.samples.iml.json                  # Sample output
+│   │
 │   └── make-api-call/                                       # [Other] group
 │       ├── make-api-call.communication.iml.json             # Universal/arbitrary API call
 │       ├── make-api-call.mappable-parameters.iml.json       # URL, method, headers, body
@@ -114,4 +121,15 @@ Each file maps to a specific **tab** in the Make.com Apps Editor:
 | Edit Image | Action | Image Generation | `POST /models/{model}:generateContent` (with inline_data) |
 | Generate Video | Action | Video Generation | `POST /models/{model}:predictLongRunning` |
 | Get Video Status | Action | Video Generation | `GET /{operationName}` |
+| Download Asset | Action | Other | `GET {fileUri}` (binary download with auth) |
 | Make an API Call | Universal | Other | User-defined |
+
+## Recommended Video Generation Scenario
+
+Since video generation is async (takes minutes), use this Make.com scenario pattern:
+
+```
+Generate Video -> Sleep (60-120s) -> Get Video Status -> Router
+                                                          ├─ done=true  -> Download Asset -> (use file)
+                                                          └─ done=false -> loop back to Sleep
+```
