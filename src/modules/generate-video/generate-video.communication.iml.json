@@ -1,29 +1,97 @@
-{
-    "url": "/models/{{parameters.model}}:predictLongRunning",
-    "method": "POST",
-    "body": {
-        "instances": [
-            {
-                "prompt": "{{parameters.prompt}}",
-                "image": "{{if(parameters.firstFrameMimeType, object('inlineData', object('mimeType', parameters.firstFrameMimeType, 'data', parameters.firstFrameData)), undefined)}}",
-                "video": "{{if(parameters.extendVideoMimeType, object('inlineData', object('mimeType', parameters.extendVideoMimeType, 'data', parameters.extendVideoData)), undefined)}}"
+[
+    {
+        "url": "{{parameters.firstFrameUrl}}",
+        "method": "GET",
+        "condition": "{{!!parameters.firstFrameUrl}}",
+        "response": {
+            "temp": {
+                "firstFrameMimeType": "{{headers.content-type}}",
+                "firstFrameData": "{{base64(body)}}"
             }
-        ],
-        "parameters": {
-            "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
-            "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
-            "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}",
-            "resolution": "{{ifempty(parameters.resolution, undefined)}}",
-            "durationSeconds": "{{ifempty(parameters.durationSeconds, undefined)}}",
-            "numberOfVideos": "{{ifempty(parameters.numberOfVideos, undefined)}}",
-            "seed": "{{ifempty(parameters.seed, undefined)}}",
-            "lastFrame": "{{if(parameters.lastFrameMimeType, object('inlineData', object('mimeType', parameters.lastFrameMimeType, 'data', parameters.lastFrameData)), undefined)}}",
-            "referenceImages": "{{ifempty(parameters.referenceImages, undefined)}}"
         }
     },
-    "response": {
-        "output": {
-            "operationName": "{{body.name}}"
+    {
+        "url": "{{parameters.lastFrameUrl}}",
+        "method": "GET",
+        "condition": "{{!!parameters.lastFrameUrl}}",
+        "response": {
+            "temp": {
+                "lastFrameMimeType": "{{headers.content-type}}",
+                "lastFrameData": "{{base64(body)}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.extendVideoUrl}}",
+        "method": "GET",
+        "condition": "{{!!parameters.extendVideoUrl}}",
+        "response": {
+            "temp": {
+                "extendVideoMimeType": "{{headers.content-type}}",
+                "extendVideoData": "{{base64(body)}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.referenceImageUrl1}}",
+        "method": "GET",
+        "condition": "{{!!parameters.referenceImageUrl1}}",
+        "response": {
+            "temp": {
+                "refImg1MimeType": "{{headers.content-type}}",
+                "refImg1Data": "{{base64(body)}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.referenceImageUrl2}}",
+        "method": "GET",
+        "condition": "{{!!parameters.referenceImageUrl2}}",
+        "response": {
+            "temp": {
+                "refImg2MimeType": "{{headers.content-type}}",
+                "refImg2Data": "{{base64(body)}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.referenceImageUrl3}}",
+        "method": "GET",
+        "condition": "{{!!parameters.referenceImageUrl3}}",
+        "response": {
+            "temp": {
+                "refImg3MimeType": "{{headers.content-type}}",
+                "refImg3Data": "{{base64(body)}}"
+            }
+        }
+    },
+    {
+        "url": "/models/{{parameters.model}}:predictLongRunning",
+        "method": "POST",
+        "body": {
+            "instances": [
+                {
+                    "prompt": "{{parameters.prompt}}",
+                    "image": "{{if(temp.firstFrameData, object('inlineData', object('mimeType', temp.firstFrameMimeType, 'data', temp.firstFrameData)), undefined)}}",
+                    "video": "{{if(temp.extendVideoData, object('inlineData', object('mimeType', temp.extendVideoMimeType, 'data', temp.extendVideoData)), undefined)}}"
+                }
+            ],
+            "parameters": {
+                "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+                "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
+                "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}",
+                "resolution": "{{ifempty(parameters.resolution, undefined)}}",
+                "durationSeconds": "{{ifempty(parameters.durationSeconds, undefined)}}",
+                "numberOfVideos": "{{ifempty(parameters.numberOfVideos, undefined)}}",
+                "seed": "{{ifempty(parameters.seed, undefined)}}",
+                "lastFrame": "{{if(temp.lastFrameData, object('inlineData', object('mimeType', temp.lastFrameMimeType, 'data', temp.lastFrameData)), undefined)}}",
+                "referenceImages": "{{if(temp.refImg1Data, flatten(array(if(temp.refImg1Data, object('image', object('inlineData', object('mimeType', temp.refImg1MimeType, 'data', temp.refImg1Data)), 'referenceType', 'asset'), undefined), if(temp.refImg2Data, object('image', object('inlineData', object('mimeType', temp.refImg2MimeType, 'data', temp.refImg2Data)), 'referenceType', 'asset'), undefined), if(temp.refImg3Data, object('image', object('inlineData', object('mimeType', temp.refImg3MimeType, 'data', temp.refImg3Data)), 'referenceType', 'asset'), undefined))), undefined)}}"
+            }
+        },
+        "response": {
+            "output": {
+                "operationName": "{{body.name}}"
+            }
         }
     }
-}
+]

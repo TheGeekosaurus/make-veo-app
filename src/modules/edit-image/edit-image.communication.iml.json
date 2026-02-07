@@ -1,31 +1,100 @@
-{
-    "url": "/models/{{parameters.model}}:generateContent",
-    "method": "POST",
-    "body": {
-        "contents": [
-            {
-                "parts": "{{flatten(array(object('text', parameters.prompt), map(parameters.referenceImages, 'object', 'inline_data', object('mime_type', item.mimeType, 'data', item.data))))}}"
-            }
-        ],
-        "generationConfig": {
-            "responseModalities": [
-                "TEXT",
-                "IMAGE"
-            ],
-            "imageConfig": {
-                "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
-                "imageSize": "{{ifempty(parameters.imageSize, undefined)}}"
+[
+    {
+        "url": "{{parameters.imageUrls[0].url}}",
+        "method": "GET",
+        "condition": "{{!!parameters.imageUrls[0].url}}",
+        "response": {
+            "temp": {
+                "images": [
+                    {
+                        "inline_data": {
+                            "mime_type": "{{headers.content-type}}",
+                            "data": "{{base64(body)}}"
+                        }
+                    }
+                ]
             }
         }
     },
-    "response": {
-        "output": {
-            "text": "{{ifempty(body.candidates[0].content.parts[0].text, '')}}",
-            "imageMimeType": "{{ifempty(body.candidates[0].content.parts[1].inlineData.mimeType, body.candidates[0].content.parts[0].inlineData.mimeType)}}",
-            "imageData": "{{ifempty(body.candidates[0].content.parts[1].inlineData.data, body.candidates[0].content.parts[0].inlineData.data)}}",
-            "finishReason": "{{body.candidates[0].finishReason}}",
-            "promptTokenCount": "{{body.usageMetadata.promptTokenCount}}",
-            "totalTokenCount": "{{body.usageMetadata.totalTokenCount}}"
+    {
+        "url": "{{parameters.imageUrls[1].url}}",
+        "method": "GET",
+        "condition": "{{!!parameters.imageUrls[1].url}}",
+        "response": {
+            "temp": {
+                "images": "{{append(temp.images, object('inline_data', object('mime_type', headers.content-type, 'data', base64(body))))}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.imageUrls[2].url}}",
+        "method": "GET",
+        "condition": "{{!!parameters.imageUrls[2].url}}",
+        "response": {
+            "temp": {
+                "images": "{{append(temp.images, object('inline_data', object('mime_type', headers.content-type, 'data', base64(body))))}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.imageUrls[3].url}}",
+        "method": "GET",
+        "condition": "{{!!parameters.imageUrls[3].url}}",
+        "response": {
+            "temp": {
+                "images": "{{append(temp.images, object('inline_data', object('mime_type', headers.content-type, 'data', base64(body))))}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.imageUrls[4].url}}",
+        "method": "GET",
+        "condition": "{{!!parameters.imageUrls[4].url}}",
+        "response": {
+            "temp": {
+                "images": "{{append(temp.images, object('inline_data', object('mime_type', headers.content-type, 'data', base64(body))))}}"
+            }
+        }
+    },
+    {
+        "url": "{{parameters.imageUrls[5].url}}",
+        "method": "GET",
+        "condition": "{{!!parameters.imageUrls[5].url}}",
+        "response": {
+            "temp": {
+                "images": "{{append(temp.images, object('inline_data', object('mime_type', headers.content-type, 'data', base64(body))))}}"
+            }
+        }
+    },
+    {
+        "url": "/models/{{parameters.model}}:generateContent",
+        "method": "POST",
+        "body": {
+            "contents": [
+                {
+                    "parts": "{{flatten(array(object('text', parameters.prompt), temp.images))}}"
+                }
+            ],
+            "generationConfig": {
+                "responseModalities": [
+                    "TEXT",
+                    "IMAGE"
+                ],
+                "imageConfig": {
+                    "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+                    "imageSize": "{{ifempty(parameters.imageSize, undefined)}}"
+                }
+            }
+        },
+        "response": {
+            "output": {
+                "text": "{{ifempty(body.candidates[0].content.parts[0].text, '')}}",
+                "imageMimeType": "{{ifempty(body.candidates[0].content.parts[1].inlineData.mimeType, body.candidates[0].content.parts[0].inlineData.mimeType)}}",
+                "imageData": "{{ifempty(body.candidates[0].content.parts[1].inlineData.data, body.candidates[0].content.parts[0].inlineData.data)}}",
+                "finishReason": "{{body.candidates[0].finishReason}}",
+                "promptTokenCount": "{{body.usageMetadata.promptTokenCount}}",
+                "totalTokenCount": "{{body.usageMetadata.totalTokenCount}}"
+            }
         }
     }
-}
+]
