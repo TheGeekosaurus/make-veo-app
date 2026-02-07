@@ -1,15 +1,21 @@
 {
-    "url": "/models",
+    "url": "https://generativelanguage.googleapis.com/v1beta/models",
     "method": "GET",
     "headers": {
         "x-goog-api-key": "{{parameters.apiKey}}"
     },
     "response": {
+        "data": {
+            "apiKey": "{{parameters.apiKey}}"
+        },
+        "metadata": {
+            "value": "Gemini API"
+        },
         "valid": {
             "condition": "{{statusCode == 200}}"
         },
         "error": {
-            "message": "Invalid API key. Please verify your Gemini API key and try again."
+            "message": "[{{statusCode}}]: {{ifempty(body.error.message, 'Invalid API key. Please verify your Gemini API key and try again.')}}"
         }
     },
     "log": {
