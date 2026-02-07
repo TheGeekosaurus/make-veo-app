@@ -1,0 +1,9 @@
+[
+    {
+        "name": "operationName",
+        "type": "text",
+        "label": "Operation Name",
+        "help": "The operation name returned by the Generate Video module (e.g. `operations/...`).",
+        "required": true
+    }
+]

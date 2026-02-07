@@ -1,0 +1,25 @@
+{
+    "url": "/models/{{parameters.model}}:generateContent",
+    "method": "POST",
+    "body": {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": "{{parameters.prompt}}"
+                    }
+                ]
+            }
+        ],
+        "generationConfig": "{{ifempty(parameters.generationConfig, undefined)}}"
+    },
+    "response": {
+        "output": {
+            "text": "{{body.candidates[0].content.parts[0].text}}",
+            "finishReason": "{{body.candidates[0].finishReason}}",
+            "promptTokenCount": "{{body.usageMetadata.promptTokenCount}}",
+            "candidatesTokenCount": "{{body.usageMetadata.candidatesTokenCount}}",
+            "totalTokenCount": "{{body.usageMetadata.totalTokenCount}}"
+        }
+    }
+}

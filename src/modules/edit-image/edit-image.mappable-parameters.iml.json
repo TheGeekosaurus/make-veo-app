@@ -1,0 +1,115 @@
+[
+    {
+        "name": "model",
+        "type": "select",
+        "label": "Model",
+        "help": "Select the model for image editing. Gemini 3 Pro Image Preview supports up to 14 reference images.",
+        "required": true,
+        "options": [
+            {
+                "label": "Gemini 2.5 Flash (Image)",
+                "value": "gemini-2.5-flash-image"
+            },
+            {
+                "label": "Gemini 3 Pro Image Preview",
+                "value": "gemini-3-pro-image-preview"
+            }
+        ]
+    },
+    {
+        "name": "prompt",
+        "type": "text",
+        "label": "Prompt",
+        "help": "Describe the edits you want to make, or how to combine the reference images.",
+        "required": true
+    },
+    {
+        "name": "referenceImages",
+        "type": "array",
+        "label": "Reference Images",
+        "help": "Up to 14 reference images: 6 objects (high-fidelity) + 5 humans (character consistency). At least 1 required.",
+        "required": true,
+        "spec": [
+            {
+                "name": "mimeType",
+                "type": "select",
+                "label": "MIME Type",
+                "required": true,
+                "options": [
+                    {
+                        "label": "JPEG",
+                        "value": "image/jpeg"
+                    },
+                    {
+                        "label": "PNG",
+                        "value": "image/png"
+                    },
+                    {
+                        "label": "WebP",
+                        "value": "image/webp"
+                    },
+                    {
+                        "label": "GIF",
+                        "value": "image/gif"
+                    }
+                ]
+            },
+            {
+                "name": "data",
+                "type": "text",
+                "label": "Image Data (Base64)",
+                "required": true
+            }
+        ]
+    },
+    {
+        "name": "aspectRatio",
+        "type": "select",
+        "label": "Aspect Ratio",
+        "help": "The aspect ratio of the generated image.",
+        "required": false,
+        "options": [
+            {
+                "label": "1:1 (Square)",
+                "value": "1:1"
+            },
+            {
+                "label": "3:4 (Portrait)",
+                "value": "3:4"
+            },
+            {
+                "label": "4:3 (Landscape)",
+                "value": "4:3"
+            },
+            {
+                "label": "5:4",
+                "value": "5:4"
+            },
+            {
+                "label": "9:16 (Vertical)",
+                "value": "9:16"
+            },
+            {
+                "label": "16:9 (Widescreen)",
+                "value": "16:9"
+            }
+        ]
+    },
+    {
+        "name": "imageSize",
+        "type": "select",
+        "label": "Image Size",
+        "help": "The resolution of the generated image.",
+        "required": false,
+        "options": [
+            {
+                "label": "1K",
+                "value": "1K"
+            },
+            {
+                "label": "2K",
+                "value": "2K"
+            }
+        ]
+    }
+]

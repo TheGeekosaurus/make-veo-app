@@ -1,0 +1,22 @@
+[
+    {
+        "name": "fileName",
+        "type": "text",
+        "label": "File Name"
+    },
+    {
+        "name": "data",
+        "type": "buffer",
+        "label": "File Data"
+    },
+    {
+        "name": "contentType",
+        "type": "text",
+        "label": "Content Type"
+    },
+    {
+        "name": "contentLength",
+        "type": "number",
+        "label": "Content Length (bytes)"
+    }
+]

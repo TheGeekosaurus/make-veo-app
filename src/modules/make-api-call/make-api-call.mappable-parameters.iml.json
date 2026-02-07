@@ -1,0 +1,106 @@
+[
+    {
+        "name": "url",
+        "type": "text",
+        "label": "URL",
+        "help": "Enter a path relative to `https://generativelanguage.googleapis.com/v1beta`. E.g. `/models`.",
+        "required": true
+    },
+    {
+        "name": "method",
+        "type": "select",
+        "label": "Method",
+        "required": true,
+        "options": [
+            {
+                "label": "GET",
+                "value": "GET"
+            },
+            {
+                "label": "POST",
+                "value": "POST"
+            },
+            {
+                "label": "PUT",
+                "value": "PUT"
+            },
+            {
+                "label": "PATCH",
+                "value": "PATCH"
+            },
+            {
+                "label": "DELETE",
+                "value": "DELETE"
+            }
+        ]
+    },
+    {
+        "name": "headers",
+        "type": "array",
+        "label": "Headers",
+        "help": "Additional request headers.",
+        "required": false,
+        "spec": [
+            {
+                "name": "key",
+                "type": "text",
+                "label": "Key"
+            },
+            {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+            }
+        ]
+    },
+    {
+        "name": "qs",
+        "type": "array",
+        "label": "Query String",
+        "help": "Additional query string parameters.",
+        "required": false,
+        "spec": [
+            {
+                "name": "key",
+                "type": "text",
+                "label": "Key"
+            },
+            {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+            }
+        ]
+    },
+    {
+        "name": "bodyType",
+        "type": "select",
+        "label": "Body Type",
+        "required": false,
+        "options": [
+            {
+                "label": "JSON (application/json)",
+                "value": "json"
+            },
+            {
+                "label": "Form Data (multipart/form-data)",
+                "value": "multipart/form-data"
+            },
+            {
+                "label": "URL Encoded (application/x-www-form-urlencoded)",
+                "value": "urlencoded"
+            },
+            {
+                "label": "Raw",
+                "value": "raw"
+            }
+        ]
+    },
+    {
+        "name": "body",
+        "type": "any",
+        "label": "Body",
+        "help": "The request body content.",
+        "required": false
+    }
+]

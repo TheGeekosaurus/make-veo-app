@@ -1,0 +1,9 @@
+[
+    {
+        "name": "apiKey",
+        "type": "text",
+        "label": "API Key",
+        "help": "Enter your Gemini API key. You can generate one at [Google AI Studio](https://aistudio.google.com/apikey).",
+        "required": true
+    }
+]

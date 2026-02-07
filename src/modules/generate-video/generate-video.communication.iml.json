@@ -1,0 +1,29 @@
+{
+    "url": "/models/{{parameters.model}}:predictLongRunning",
+    "method": "POST",
+    "body": {
+        "instances": [
+            {
+                "prompt": "{{parameters.prompt}}",
+                "image": "{{if(parameters.firstFrameMimeType, object('inlineData', object('mimeType', parameters.firstFrameMimeType, 'data', parameters.firstFrameData)), undefined)}}",
+                "video": "{{if(parameters.extendVideoMimeType, object('inlineData', object('mimeType', parameters.extendVideoMimeType, 'data', parameters.extendVideoData)), undefined)}}"
+            }
+        ],
+        "parameters": {
+            "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+            "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
+            "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}",
+            "resolution": "{{ifempty(parameters.resolution, undefined)}}",
+            "durationSeconds": "{{ifempty(parameters.durationSeconds, undefined)}}",
+            "numberOfVideos": "{{ifempty(parameters.numberOfVideos, undefined)}}",
+            "seed": "{{ifempty(parameters.seed, undefined)}}",
+            "lastFrame": "{{if(parameters.lastFrameMimeType, object('inlineData', object('mimeType', parameters.lastFrameMimeType, 'data', parameters.lastFrameData)), undefined)}}",
+            "referenceImages": "{{ifempty(parameters.referenceImages, undefined)}}"
+        }
+    },
+    "response": {
+        "output": {
+            "operationName": "{{body.name}}"
+        }
+    }
+}

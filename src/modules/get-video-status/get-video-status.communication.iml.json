@@ -1,0 +1,12 @@
+{
+    "url": "/{{parameters.operationName}}",
+    "method": "GET",
+    "response": {
+        "output": {
+            "done": "{{body.done}}",
+            "name": "{{body.name}}",
+            "videoUri": "{{body.response.generateVideoResponse.generatedSamples[0].video.uri}}",
+            "state": "{{ifempty(body.metadata.state, 'UNKNOWN')}}"
+        }
+    }
+}

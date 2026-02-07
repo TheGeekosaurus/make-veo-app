@@ -1,0 +1,16 @@
+[
+    {
+        "name": "fileUri",
+        "type": "text",
+        "label": "File URI",
+        "help": "The full URI of the file to download. Use the Video URI from **Get Video Status** output, or any Gemini API file URL.",
+        "required": true
+    },
+    {
+        "name": "fileName",
+        "type": "text",
+        "label": "File Name",
+        "help": "The desired file name for the downloaded file (e.g. `my-video.mp4`, `output.png`).",
+        "required": false
+    }
+]
