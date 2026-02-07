@@ -15,8 +15,13 @@
             "responseModalities": [
                 "TEXT",
                 "IMAGE"
-            ]
-        }
+            ],
+            "imageConfig": {
+                "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+                "imageSize": "{{ifempty(parameters.imageSize, undefined)}}"
+            }
+        },
+        "tools": "{{if(parameters.enableGoogleSearch, '[{\"google_search\": {}}]', undefined)}}"
     },
     "response": {
         "output": {

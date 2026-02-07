@@ -4,24 +4,18 @@
     "body": {
         "contents": [
             {
-                "parts": [
-                    {
-                        "text": "{{parameters.prompt}}"
-                    },
-                    {
-                        "inline_data": {
-                            "mime_type": "{{parameters.imageMimeType}}",
-                            "data": "{{parameters.imageData}}"
-                        }
-                    }
-                ]
+                "parts": "{{flatten(array(object('text', parameters.prompt), map(parameters.referenceImages, 'object', 'inline_data', object('mime_type', item.mimeType, 'data', item.data))))}}"
             }
         ],
         "generationConfig": {
             "responseModalities": [
                 "TEXT",
                 "IMAGE"
-            ]
+            ],
+            "imageConfig": {
+                "aspectRatio": "{{ifempty(parameters.aspectRatio, undefined)}}",
+                "imageSize": "{{ifempty(parameters.imageSize, undefined)}}"
+            }
         }
     },
     "response": {
