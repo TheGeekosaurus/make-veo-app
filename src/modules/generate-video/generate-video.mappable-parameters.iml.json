@@ -7,12 +7,20 @@
         "required": true,
         "options": [
             {
-                "label": "Veo 3.1 (8s, 720p/1080p/4K, with audio)",
+                "label": "Veo 3.1",
                 "value": "veo-3.1-generate-preview"
+            },
+            {
+                "label": "Veo 3.1 Fast",
+                "value": "veo-3.1-fast-generate-preview"
             },
             {
                 "label": "Veo 3.0",
                 "value": "veo-3.0-generate-preview"
+            },
+            {
+                "label": "Veo 3.0 Fast",
+                "value": "veo-3.0-fast-generate-preview"
             },
             {
                 "label": "Veo 2.0",
@@ -54,20 +62,41 @@
         "name": "resolution",
         "type": "select",
         "label": "Resolution",
-        "help": "Video resolution. Required when extending videos.",
+        "help": "Video resolution. Default: 720p. 1080p and 4K only support 8s duration. Extension requires 720p.",
         "required": false,
         "options": [
             {
-                "label": "720p",
+                "label": "720p (default)",
                 "value": "720p"
             },
             {
-                "label": "1080p",
+                "label": "1080p (8s only)",
                 "value": "1080p"
             },
             {
-                "label": "4K",
+                "label": "4K (8s only)",
                 "value": "4k"
+            }
+        ]
+    },
+    {
+        "name": "durationSeconds",
+        "type": "select",
+        "label": "Duration (seconds)",
+        "help": "Length of generated video. Must be 8 when using extension, reference images, or 1080p/4K resolution.",
+        "required": false,
+        "options": [
+            {
+                "label": "4 seconds",
+                "value": "4"
+            },
+            {
+                "label": "6 seconds",
+                "value": "6"
+            },
+            {
+                "label": "8 seconds",
+                "value": "8"
             }
         ]
     },
@@ -75,15 +104,19 @@
         "name": "personGeneration",
         "type": "select",
         "label": "Person Generation",
-        "help": "Control whether people can appear in the generated video.",
+        "help": "Control whether people can appear. Veo 3.1 text-to-video/extension: allow_all only. Image-to-video/interpolation/references: allow_adult only.",
         "required": false,
         "options": [
+            {
+                "label": "Allow All",
+                "value": "allow_all"
+            },
             {
                 "label": "Allow Adult Only",
                 "value": "allow_adult"
             },
             {
-                "label": "Don't Allow",
+                "label": "Don't Allow (Veo 2 only)",
                 "value": "dont_allow"
             }
         ]
@@ -93,6 +126,13 @@
         "type": "number",
         "label": "Number of Videos",
         "help": "Number of videos to generate. Default: 1.",
+        "required": false
+    },
+    {
+        "name": "seed",
+        "type": "number",
+        "label": "Seed",
+        "help": "Seed for generation. Available for Veo 3+ models. Doesn't guarantee determinism but slightly improves it.",
         "required": false
     },
     {

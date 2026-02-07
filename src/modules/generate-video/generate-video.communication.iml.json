@@ -14,7 +14,9 @@
             "negativePrompt": "{{ifempty(parameters.negativePrompt, undefined)}}",
             "personGeneration": "{{ifempty(parameters.personGeneration, undefined)}}",
             "resolution": "{{ifempty(parameters.resolution, undefined)}}",
+            "durationSeconds": "{{ifempty(parameters.durationSeconds, undefined)}}",
             "numberOfVideos": "{{ifempty(parameters.numberOfVideos, undefined)}}",
+            "seed": "{{ifempty(parameters.seed, undefined)}}",
             "lastFrame": "{{if(parameters.lastFrameMimeType, object('inlineData', object('mimeType', parameters.lastFrameMimeType, 'data', parameters.lastFrameData)), undefined)}}",
             "referenceImages": "{{ifempty(parameters.referenceImages, undefined)}}"
         }
